@@ -7,6 +7,11 @@ public class Main {
     Expr -> Expr + Term | Expr - Term | Term
     Term -> Term * Factor | Term / Factor | Factor
     Factor -> number | id
+
+    3
+    S -> aAd | aB
+    A -> a | ab
+    B -> ccd|ddc
     */
     private static Grammar takeInputAndCreateGrammar() {
         Grammar grammar = new Grammar();
@@ -26,12 +31,43 @@ public class Main {
 
         return grammar;
     }
+
+    private static void handleCode(Grammar grammar) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Following are the two functionality this code provides:");
+        System.out.println("\t1.To remove left recursion\n" +
+                "\t2.To do left factoring\n");
+
+        System.out.print("Please enter you choice (either 1 or 2): ");
+        int choice = scanner.nextInt();
+
+        System.out.println();
+        switch (choice) {
+            case 1:
+                grammar.applyAlgorithmForRemovalOfLeftRecursion();
+                System.out.println("After removal of left recursion:");
+                grammar.printRules();
+                break;
+
+            case 2:
+                grammar.applyAlgorithmForProducingAnEquivalentLeftFactored();
+                System.out.println("After doing left factoring:");
+                grammar.printRules();
+                break;
+
+            default:
+                System.out.println("ERROR!!! Please enter a valid choice!");
+                System.out.println("Exiting...");
+                break;
+        }
+    }
+
     public static void main(String[] args) {
         Grammar grammar = takeInputAndCreateGrammar();
+        System.out.println("Input rules:");
         grammar.printRules();
 
-        grammar.applyAlgorithmForRemovalOfLeftRecursion();
-
-        grammar.printRules();
+        handleCode(grammar);
     }
 }
