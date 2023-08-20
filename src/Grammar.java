@@ -213,7 +213,11 @@ public class Grammar {
 
         for (String rule: productionRule.getRightHandSide()) {
             if (rule.startsWith(longestCommonPrefix)) {
-                newRulesForNewName.add(rule.substring(longestCommonPrefix.length()));
+                if (rule.length() == longestCommonPrefix.length()) {
+                    newRulesForNewName.add("\u03B5");
+                } else {
+                    newRulesForNewName.add(rule.substring(longestCommonPrefix.length()));
+                }
             } else {
                 amendRules.add(rule);
             }
