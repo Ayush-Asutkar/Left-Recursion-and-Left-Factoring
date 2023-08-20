@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Grammar {
-    private List<ProductionRule> productionRules;
+    private static final String EPSILON = String.valueOf('\u03B5');
+    private final List<ProductionRule> productionRules;
 
     public Grammar() {
         this.productionRules = new ArrayList<>();
@@ -115,7 +116,7 @@ public class Grammar {
         first.setNewRightHandSide(changeRuleForFirst);
 
         //add new production rule
-        newRuleForNewName.add("\u03B5");
+        newRuleForNewName.add(EPSILON);
 
         ProductionRule newProductionRule = new ProductionRule(newName);
         newProductionRule.setNewRightHandSide(newRuleForNewName);
@@ -214,7 +215,7 @@ public class Grammar {
         for (String rule: productionRule.getRightHandSide()) {
             if (rule.startsWith(longestCommonPrefix)) {
                 if (rule.length() == longestCommonPrefix.length()) {
-                    newRulesForNewName.add("\u03B5");
+                    newRulesForNewName.add(EPSILON);
                 } else {
                     newRulesForNewName.add(rule.substring(longestCommonPrefix.length()));
                 }
