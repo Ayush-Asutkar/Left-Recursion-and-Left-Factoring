@@ -238,7 +238,7 @@ public class Grammar {
         return true;
     }
 
-    private List<ProductionRule> toStoreNewRules = new ArrayList<>();
+    private final List<ProductionRule> toStoreNewRules = new ArrayList<>();
 
     public void applyAlgorithmForProducingAnEquivalentLeftFactored() {
         boolean value = true;
