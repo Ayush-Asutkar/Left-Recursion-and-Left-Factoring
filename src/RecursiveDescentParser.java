@@ -41,7 +41,7 @@ public class RecursiveDescentParser {
         System.out.println("Remaining input: " + remainingInput);
 
 
-        System.out.println("Rule applied: " + rule);
+        System.out.println("Rule applying: " + rule);
         System.out.println();
     }
 
@@ -61,7 +61,7 @@ public class RecursiveDescentParser {
     }
 
     private boolean parseB() {
-        printStep("B -> n B A B | ε");
+        printStep("B -> n B A B");
         this.sententialForm = this.sententialForm.replaceFirst("B", "nBAB");
 
         if (this.currentIndex < this.input.length()) {
@@ -70,6 +70,7 @@ public class RecursiveDescentParser {
             }
         }
 
+        printStep("B -> ε");
         //accepting with epsilon
         this.sententialForm = this.sententialForm.replaceFirst("nBAB", "ε");
 //        System.out.println("B with ε");
@@ -77,7 +78,7 @@ public class RecursiveDescentParser {
     }
 
     private boolean parseA() {
-        printStep("A -> + | x");
+        printStep("A -> +");
         this.sententialForm = this.sententialForm.replaceFirst("A", "+");
 
         if (this.currentIndex < this.input.length()) {
@@ -88,6 +89,7 @@ public class RecursiveDescentParser {
 
         this.sententialForm = this.sententialForm.replaceFirst("\\+", "A");
 
+        printStep("A -> x");
         this.sententialForm = this.sententialForm.replaceFirst("A","x");
         if (this.currentIndex < this.input.length()) {
             if (parseTerminal('x')) {
@@ -120,7 +122,7 @@ public class RecursiveDescentParser {
 //        RecursiveDescentParser recursiveDescentParser = new RecursiveDescentParser("nn+nx");
 //        RecursiveDescentParser recursiveDescentParser = new RecursiveDescentParser("nn");
 //        RecursiveDescentParser recursiveDescentParser = new RecursiveDescentParser("nnx");
-        RecursiveDescentParser recursiveDescentParser = new RecursiveDescentParser("nn+n+nn+nx");
+        RecursiveDescentParser recursiveDescentParser = new RecursiveDescentParser("nn+n+nn+n+x");
 
         boolean check = recursiveDescentParser.applyParsing();
         if (check) {
