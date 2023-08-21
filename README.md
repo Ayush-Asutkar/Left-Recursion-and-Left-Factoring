@@ -14,7 +14,7 @@
 ---
 
 ## How to run
-1. Clone the repository: https://github.com/Ayush-Asutkar/Lexical-Analyzer.git
+1. Clone the repository: https://github.com/Ayush-Asutkar/Left-Recursion-and-Left-Factoring.git
 2. Open in your favourite editor. (The editor used while making this project was Intellij IDEA)
 3. Run the complete project by running the Main.java in src folder. Follow the prompt to give input.
 
