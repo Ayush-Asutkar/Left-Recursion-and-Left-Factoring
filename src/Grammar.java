@@ -196,6 +196,23 @@ public class Grammar {
         return rightHandSide.get(indexWithCommonPref).substring(0, outerCommonPrefixIndex);
     }
 
+    private String findNewName(String leftHandSide) {
+        String newName = leftHandSide + "'";
+        boolean notUnique = true;
+        while (notUnique) {
+            notUnique = false;
+
+            for(ProductionRule rule: this.productionRules) {
+                if (rule.equals(new ProductionRule(newName))) {
+                    newName += "'";
+                    notUnique = true;
+                }
+            }
+        }
+
+        return newName;
+    }
+
     private boolean applyAlgorithmForProducingAnEquivalentLeftFactoredOnParticularRule(ProductionRule productionRule){
 //        System.out.println("To apply rule on: " + productionRule);
 
@@ -207,7 +224,7 @@ public class Grammar {
 //        System.out.println("longestCommonPrefix = " + longestCommonPrefix);
 
         String leftHandSide = productionRule.getLeftHandSide();
-        String newName = leftHandSide + "'";
+        String newName = findNewName(leftHandSide);
 
         Set<String> amendRules = new HashSet<>();
         Set<String> newRulesForNewName = new HashSet<>();
